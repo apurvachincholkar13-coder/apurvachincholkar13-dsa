@@ -1,0 +1,32 @@
+ string name;
+    cout << "Enter name to delete: ";
+    cin >> name;
+    Node* temp = head;
+    Node* prev = NULL;
+    // Search for the contact
+    while (temp != NULL && temp->name != name)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    // Contact not found
+    if (temp == NULL)
+    {
+        cout << "Contact not found.\n";
+        return;
+    }
+    // If first node is deleted
+    if (prev == NULL)
+    {
+        head = temp->next;
+    }
+    else
+    {
+        prev->next = temp->next;
+    }
+
+    delete temp;
+
+    cout << "Contact deleted successfully.\n";
+}
