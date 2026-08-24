@@ -1,0 +1,129 @@
+#include <iostream>
+using namespace std;
+
+void insertion(int arr[], int &n, int max, int pos, int value)
+{
+    if (n >= max)
+    {
+        cout << "The array is full. Cannot add element.\n";
+        return;
+    }
+
+    if (pos < 0 || pos > n)
+    {
+        cout << "Invalid position!\n";
+        return;
+    }
+
+    for (int i = n; i > pos; i--)
+    {
+        arr[i] = arr[i - 1];
+    }
+
+    arr[pos] = value;
+    n++;
+
+    cout << "Element inserted successfully.\n";
+}
+
+void deletion(int arr[], int &n, int pos)
+{
+    if (n <= 0)
+    {
+        cout << "Array is empty. Cannot delete.\n";
+        return;
+    }
+
+    if (pos < 0 || pos >= n)
+    {
+        cout << "Invalid position!\n";
+        return;
+    }
+
+    for (int i = pos; i < n - 1; i++)
+    {
+        arr[i] = arr[i + 1];
+    }
+
+    n--;
+
+    cout << "Element deleted successfully.\n";
+}
+
+void search(int arr[], int n, int value)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == value)
+        {
+            cout << "Element found at position " << i << endl;
+            return;
+        }
+    }
+
+    cout << "Element not found.\n";
+}
+
+void display(int arr[], int n)
+{
+    cout << "Array elements are: ";
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    cout << endl;
+}
+
+int main()
+{
+    int max, n;
+
+    cout << "Enter maximum size of array: ";
+    cin >> max;
+
+    int arr[max];
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    cout << "Enter " << n << " elements:\n";
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Element " << i << ": ";
+        cin >> arr[i];
+    }
+
+    display(arr, n);
+
+    // Insertion
+    int pos, value;
+
+    cout << "\nEnter position for insertion: ";
+    cin >> pos;
+
+    cout << "Enter value to insert: ";
+    cin >> value;
+
+    insertion(arr, n, max, pos, value);
+
+    display(arr, n);
+
+    // Deletion
+    cout << "\nEnter position for deletion: ";
+    cin >> pos;
+
+    deletion(arr, n, pos);
+
+    display(arr, n);
+
+    // Search
+    cout << "\nEnter value to search: ";
+    cin >> value;
+
+    search(arr, n, value);
+
+    return 0;
+}
